@@ -1,3 +1,4 @@
+import javax.xml.crypto.Data;
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamReader;
 import javax.xml.stream.XMLStreamConstants;
@@ -17,7 +18,7 @@ public class Reader
 			int id = -1, x = -1, y = -1, h = -1;
 			String tagName = "";
 			String nome = "";
-			ArrayList<Integer> links = new ArrayList();
+			ArrayList<Integer> links = new ArrayList<>();
 			xmlif = XMLInputFactory.newInstance();
 			xmlr = xmlif.createXMLStreamReader(new FileInputStream("Input/test_file/" + filename));
 			while (xmlr.hasNext())
@@ -49,6 +50,7 @@ public class Reader
 				}
 				xmlr.next();
 			}
+			DataProcessing.blackMagic();
 		}
 		catch (Exception e)
 		{
