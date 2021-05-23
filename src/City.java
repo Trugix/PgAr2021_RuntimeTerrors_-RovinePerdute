@@ -45,9 +45,10 @@ public class City
 		System.out.print("Percorsi: ");
 		for (Integer p: percorsi)
 		{
-			System.out.println(p+" ");
+			System.out.print(p+" ");
 		}
 		System.out.println();
 	}
+	
 	
 }

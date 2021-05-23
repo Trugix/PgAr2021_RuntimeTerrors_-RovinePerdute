@@ -4,5 +4,7 @@ public class Main
 	{
 		Reader.readInput("PgAr_Map_5.xml");
 		DataProcessing.out();
+		DataProcessing.calcolaTeamH();
+		DataProcessing.stampaPercorso();
 	}
 }

@@ -31,6 +31,6 @@ public class Posizione
 
 	public double calcDistH(Posizione p)
 	{
-		return this.z-p.getZ();
+		return Math.abs(this.z-p.getZ());
 	}
 }

@@ -12,7 +12,6 @@ public class Reader
 	{
 		XMLInputFactory xmlif = null;
 		XMLStreamReader xmlr = null;
-		
 		try
 		{
 			int id = -1, x = -1, y = -1, h = -1;
@@ -43,7 +42,7 @@ public class Reader
 					case XMLStreamConstants.END_ELEMENT: // fine di un elemento
 						if (xmlr.getLocalName().equals("city"))
 						{
-							DataProcessing.getCities().add(new City(nome, id, new Posizione(x, y, h), links));
+							DataProcessing.getCities().add(new City(nome, id, new Posizione(x, y, h), new ArrayList<Integer> (links)));
 							links.removeAll(links);
 						}
 						break;
