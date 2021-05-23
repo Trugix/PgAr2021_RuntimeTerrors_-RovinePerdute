@@ -8,4 +8,25 @@ public class DataProcessing
 	{
 		return cities;
 	}
+
+	public static City searchCity(int idCercato)
+	{
+		int left=0, right=cities.size()-1;
+		int middle;
+		while(left <= right) {
+			middle = (left+right)/2;
+			int id_temp = cities.get(middle).getId();
+			if (id_temp < idCercato){
+				left=middle+1;
+			}else if (id_temp > idCercato)
+			{
+				right=middle-1;
+			}
+			else if (id_temp == idCercato)
+			{
+				return cities.get(middle);
+			}
+		}
+		return null;
+	}
 }

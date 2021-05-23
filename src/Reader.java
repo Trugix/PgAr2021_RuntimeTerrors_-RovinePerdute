@@ -20,7 +20,7 @@ public class Reader
 			String nome = "";
 			ArrayList<Integer> links = new ArrayList();
 			xmlif = XMLInputFactory.newInstance();
-			xmlr = xmlif.createXMLStreamReader(new FileInputStream("Input/" + filename));
+			xmlr = xmlif.createXMLStreamReader(new FileInputStream("Input/test_file/" + filename));
 			while (xmlr.hasNext())
 			{ // continua a leggere finche ha eventi a disposizione
 				switch (xmlr.getEventType())
