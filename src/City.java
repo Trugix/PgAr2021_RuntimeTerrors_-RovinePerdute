@@ -35,7 +35,7 @@ public class City
 		return percorsi;
 	}
 	
-	public void stampaCity ()
+	public void stampaCity()
 	{
 		System.out.println("\nId: "+this.id);
 		System.out.println("Nome: "+this.nome);
