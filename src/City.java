@@ -34,4 +34,20 @@ public class City
 	{
 		return percorsi;
 	}
+	
+	public void stampaCity ()
+	{
+		System.out.println("\nId: "+this.id);
+		System.out.println("Nome: "+this.nome);
+		System.out.println("x : "+this.posizione.getX());
+		System.out.println("y : "+this.posizione.getY());
+		System.out.println("z : "+this.posizione.getZ());
+		System.out.print("Percorsi: ");
+		for (Integer p: percorsi)
+		{
+			System.out.println(p+" ");
+		}
+		System.out.println();
+	}
+	
 }
