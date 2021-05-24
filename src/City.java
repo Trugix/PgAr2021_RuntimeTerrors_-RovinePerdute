@@ -8,7 +8,7 @@ public class City
 	private ArrayList <Integer> percorsi = new ArrayList<>();
 	private ArrayList <City> vicini = new ArrayList<>();
 	private double distMin = Integer.MAX_VALUE;
-	private City prevCity = new City ("-1",-1,new Posizione(-1,-1,-1),new ArrayList<>(null));
+	private City prevCity = null;
 	
 	public City(String nome, int id, Posizione posizione, ArrayList<Integer> percorsi)
 	{
@@ -16,6 +16,14 @@ public class City
 		this.id = id;
 		this.posizione = posizione;
 		this.percorsi = percorsi;
+	}
+
+	public City()
+	{
+		this.nome = "-1";
+		this.id = -1;
+		this.posizione = new Posizione(-1,-1,-1);
+		this.percorsi = new ArrayList<>(this);
 	}
 	
 	public String getNome()
