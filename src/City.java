@@ -28,14 +28,6 @@ public class City
 		this.posizione = posizione;
 		this.percorsi = percorsi;
 	}
-
-	public City()
-	{
-		this.nome = "-1";
-		this.id = -1;
-		this.posizione = new Posizione(-1,-1,-1);
-		this.percorsi = new ArrayList<>(this);
-	}
 	
 	public String getNome()
 	{
@@ -81,21 +73,5 @@ public class City
 	{
 		this.prevCity = prevCity;
 	}
-	
-	public void stampaCity()
-	{
-		System.out.println("\nId: "+this.id);
-		System.out.println("Nome: "+this.nome);
-		System.out.println("x : "+this.posizione.getX());
-		System.out.println("y : "+this.posizione.getY());
-		System.out.println("z : "+this.posizione.getZ());
-		System.out.print("Percorsi: ");
-		for (Integer p: percorsi)
-		{
-			System.out.print(p+" ");
-		}
-		System.out.println();
-	}
-	
 	
 }
