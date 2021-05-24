@@ -3,58 +3,129 @@ import java.util.ArrayList;
 public class DataProcessing
 {
 	private static ArrayList<City> cities = new ArrayList<>();
+	private static ArrayList<City> percorsoMet = new ArrayList<>();
+	private static ArrayList<City> percorsoTon = new ArrayList<>();
+	private static double distMet;
+	private static double distTon;
 	
 	public static ArrayList<City> getCities()
 	{
 		return cities;
 	}
 	
-	private ArrayList<ArrayList<Integer>> matH = new ArrayList<ArrayList<Integer>>();
-	private ArrayList<ArrayList<Integer>> matNonH = new ArrayList<ArrayList<Integer>>();
-	
-	public static void calcolaTeamH()
+	public static double getDistMet()
 	{
-		ArrayList<City> listaCities = new ArrayList(cities);
-		cities.get(0).setDistMin(0);
-		double distanza;
-			while (!listaCities.isEmpty())
-			{
-				for (City v: cities.get(listaCities.get(0).getId()).getVicini())
-				{
-					distanza = v.getPosizione().calcDistH(cities.get(listaCities.get(0).getId()).getPosizione());
-					if (distanza < v.getDistMin() &&  cities.get(listaCities.get(0).getId()).getId() != v.getPrevCity().getId())
-					{
-						v.setDistMin(distanza);
-						v.setPrevCity(cities.get(listaCities.get(0).getId()));
-					}
-				}
-				listaCities.remove(0);
-			}
-			/*for (City v: c.getVicini())
-			{
-				distanza = v.getPosizione().calcDistH(c.getPosizione());
-				if (distanza < v.getDistMin())
-				{
-					v.setDistMin(distanza);
-					v.setPrevCity(c);
-				}
-				c.getVicini().remove(v);
-			}*/
-		
+		return distMet;
 	}
 	
-	public static void stampaPercorso ()
+	public static double getDistTon()
 	{
-		int id = cities.size()-1;
+		return distTon;
+	}
+	
+	public static ArrayList<City> getPercorsoMet()
+	{
+		return percorsoMet;
+	}
+	
+	public static ArrayList<City> getPercorsoTon()
+	{
+		return percorsoTon;
+	}
+	
+	public static void resetCities()
+	{
+		for (City c : cities)
+		{
+			c.setDistMin(Double.MAX_VALUE);
+			c.setPrevCity(c);
+			c.setNumeroCity(Integer.MAX_VALUE);
+		}
+	}
+	
+	public static void calcolaTeamMet()
+	{
+		double distanza;
+		cities.get(0).setDistMin(0);
+		cities.get(0).setNumeroCity(0);
+		for (City p : cities)
+		{
+			for (City c : p.getVicini())
+			{
+				distanza = p.getPosizione().calcDistH(c.getPosizione()) + p.getDistMin();
+				if (distanza < c.getDistMin())
+				{
+					c.setDistMin(distanza);
+					c.setPrevCity(p);
+					c.setNumeroCity(c.getPrevCity().getNumeroCity() + 1);
+				}
+				else if (distanza == c.getDistMin() && p.getNumeroCity() < c.getNumeroCity())
+				{
+					c.setDistMin(distanza);
+					c.setPrevCity(p);
+					c.setNumeroCity(p.getPrevCity().getNumeroCity() + 1);
+				}
+			}
+		}
+		salvaPercorsoMet();
+	}
+	
+	public static void calcolaTeamTon()
+	{
+		double distanza;
+		cities.get(0).setDistMin(0);
+		cities.get(0).setNumeroCity(0);
+		for (City p : cities)
+		{
+			for (City c : p.getVicini())
+			{
+				distanza = p.getPosizione().calcDistXY(c.getPosizione()) + p.getDistMin();
+				if (distanza < c.getDistMin())
+				{
+					c.setDistMin(distanza);
+					c.setPrevCity(p);
+					c.setNumeroCity(c.getPrevCity().getNumeroCity() + 1);
+				}
+				else if (distanza == c.getDistMin() && p.getNumeroCity() < c.getNumeroCity())
+				{
+					c.setDistMin(distanza);
+					c.setPrevCity(p);
+					c.setNumeroCity(p.getPrevCity().getNumeroCity() + 1);
+				}
+			}
+		}
+		salvaPercorsoTon();
+	}
+	
+	public static void salvaPercorsoMet()
+	{
+		
+		int id = cities.size() - 1;
+		percorsoMet.add(cities.get(id));
 		do
 		{
-			System.out.println(id+" ");
+			percorsoMet.add(cities.get(id).getPrevCity());
 			id = cities.get(id).getPrevCity().getId();
 		}
 		while (id != 0);
+		distMet = percorsoMet.get(0).getDistMin();
 	}
 	
-	public static void blackMagic ()
+	public static void salvaPercorsoTon()
+	{
+		
+		int id = cities.size() - 1;
+		percorsoTon.add(cities.get(id));
+		do
+		{
+			percorsoTon.add(cities.get(id).getPrevCity());
+			id = cities.get(id).getPrevCity().getId();
+		}
+		while (id != 0);
+		distTon = percorsoTon.get(0).getDistMin();
+	}
+	
+	public static void blackMagic()
 	{
 		for (City c:cities)
 		{

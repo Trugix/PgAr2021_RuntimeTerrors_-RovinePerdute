@@ -1,6 +1,6 @@
 public class Posizione
 {
-	private int x,y,z;
+	private final int x,y,z;
 	
 	public Posizione(int x, int y, int z)
 	{
