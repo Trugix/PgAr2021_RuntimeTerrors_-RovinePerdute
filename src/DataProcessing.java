@@ -2,11 +2,11 @@ import java.util.ArrayList;
 
 public class DataProcessing
 {
-	private static ArrayList<City> cities = new ArrayList<>();
-	private static ArrayList<City> percorsoMet = new ArrayList<>();
-	private static ArrayList<City> percorsoTon = new ArrayList<>();
-	private static double distMet;
-	private static double distTon;
+	private static ArrayList<City> cities = new ArrayList<>(); //lista città
+	private static ArrayList<City> percorsoMet = new ArrayList<>(); //lista che salva il percorso del team Metztli
+	private static ArrayList<City> percorsoTon = new ArrayList<>(); //lista che salva il percorso del team Tonathiu
+	private static double distMet;  //carburante team Metztli
+	private static double distTon;  //carburante team Tonathiu
 	
 	public static ArrayList<City> getCities()
 	{
@@ -33,6 +33,9 @@ public class DataProcessing
 		return percorsoTon;
 	}
 	
+	/**
+	 * resetta gli attributi delle città (usato prima di chiamare il calcolo del secondo team)
+	 */
 	public static void resetCities()
 	{
 		for (City c : cities)
@@ -79,36 +82,11 @@ public class DataProcessing
 			salvaPercorsoTon();
 	}
 	
-	public static void calcolaTeamTon()
-	{
-		double distanza;
-		cities.get(0).setDistMin(0);
-		cities.get(0).setNumeroCity(0);
-		for (City p : cities)
-		{
-			for (City c : p.getVicini())
-			{
-				distanza = p.getPosizione().calcDistXY(c.getPosizione()) + p.getDistMin();
-				if (distanza < c.getDistMin())
-				{
-					c.setDistMin(distanza);
-					c.setPrevCity(p);
-					c.setNumeroCity(c.getPrevCity().getNumeroCity() + 1);
-				}
-				else if (distanza == c.getDistMin() && p.getNumeroCity() < c.getNumeroCity())
-				{
-					c.setDistMin(distanza);
-					c.setPrevCity(p);
-					c.setNumeroCity(p.getPrevCity().getNumeroCity() + 1);
-				}
-			}
-		}
-		salvaPercorsoTon();
-	}
-	
+	/**
+	 * parte dalle rovine e guarda a catena le prevCity per arrivare all'origine, salvando le città in una lista
+	 */
 	public static void salvaPercorsoMet()
 	{
-		
 		int id = cities.size() - 1;
 		percorsoMet.add(cities.get(id));
 		do
@@ -120,6 +98,9 @@ public class DataProcessing
 		distMet = percorsoMet.get(0).getDistMin();
 	}
 	
+	/**
+	 * parte dalle rovine e guarda a catena le prevCity per arrivare all'origine, salvando le città in una lista
+	 */
 	public static void salvaPercorsoTon()
 	{
 		
@@ -134,6 +115,10 @@ public class DataProcessing
 		distTon = percorsoTon.get(0).getDistMin();
 	}
 	
+	
+	/**
+	 * metodo che trasformi la lista di percorsi di una città nella lista vicini
+	 */
 	public static void blackMagic()
 	{
 		for (City c : cities)

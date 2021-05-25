@@ -5,11 +5,11 @@ public class City
 	private String nome;
 	private int id;
 	private Posizione posizione;
-	private ArrayList <Integer> percorsi = new ArrayList<>();
-	private ArrayList <City> vicini = new ArrayList<>();
-	private double distMin = Double.MAX_VALUE;
-	private City prevCity = this;
-	private int numeroCity = Integer.MAX_VALUE;
+	private ArrayList<Integer> percorsi = new ArrayList<>(); //lista con gli id dei percorsi
+	private ArrayList<City> vicini = new ArrayList<>();    //lista con le città associate agli id di percorsi
+	private double distMin = Double.MAX_VALUE;  //distanza dall'origine
+	private City prevCity = this;               //città precendente nel percorso (inizializzata a this per evitare null pointers exeptions)
+	private int numeroCity = Integer.MAX_VALUE; //quante città servono per arrivare qua
 	
 	public int getNumeroCity()
 	{

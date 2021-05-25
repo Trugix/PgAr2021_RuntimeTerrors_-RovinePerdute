@@ -20,7 +20,7 @@ public class Writer
 			xmlw.writeStartElement("output"); // scrittura del tag radice <output>
 			xmlw.writeCharacters("\n\t");
 			xmlw.writeStartElement("routes");
-			xmlw.writeCharacters("\n\t");
+			xmlw.writeCharacters("\n\t\t");
 			xmlw.writeStartElement("route");
 			xmlw.writeAttribute("team", "Tonathiu");
 			xmlw.writeAttribute("cost", Double.toString(Math.round(DataProcessing.getDistTon())));

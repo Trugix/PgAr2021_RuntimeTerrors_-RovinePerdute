@@ -38,9 +38,9 @@ public class Main
 				System.exit(0);
 				break;
 		}
-		DataProcessing.calcolaTeamMet(); //team H
+		DataProcessing.calcolaPercorso(true);
 		DataProcessing.resetCities();
-		DataProcessing.calcolaTeamTon();
+		DataProcessing.calcolaPercorso(false);
 		Writer.writeOutput();
 	}
 }
