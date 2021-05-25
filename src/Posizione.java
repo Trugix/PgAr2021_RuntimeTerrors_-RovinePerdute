@@ -1,6 +1,6 @@
 public class Posizione
 {
-	private final int x,y,z;
+	private final int x, y, z;
 	
 	public Posizione(int x, int y, int z)
 	{
@@ -23,14 +23,14 @@ public class Posizione
 	{
 		return z;
 	}
-
+	
 	public double calcDistXY(Posizione p)
 	{
-		return (Math.sqrt(Math.pow((this.x-p.getX()),2)+Math.pow((this.y-p.getY()),2)));
+		return (Math.sqrt(Math.pow((this.x - p.getX()), 2) + Math.pow((this.y - p.getY()), 2)));
 	}
-
+	
 	public double calcDistH(Posizione p)
 	{
-		return Math.abs(this.z-p.getZ());
+		return Math.abs(this.z - p.getZ());
 	}
 }

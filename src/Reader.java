@@ -1,13 +1,13 @@
-import javax.xml.crypto.Data;
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamReader;
 import javax.xml.stream.XMLStreamConstants;
 import java.io.FileInputStream;
-import java.sql.Array;
 import java.util.ArrayList;
 
 public class Reader
 {
+	private static final String ERRORE = "\nErrore in Input: ";
+	private static final String FILE = "Input/test_file/";
 	
 	public static void readInput(String filename)
 	{
@@ -20,7 +20,7 @@ public class Reader
 			String nome = "";
 			ArrayList<Integer> links = new ArrayList<>();
 			xmlif = XMLInputFactory.newInstance();
-			xmlr = xmlif.createXMLStreamReader(new FileInputStream("Input/test_file/" + filename));
+			xmlr = xmlif.createXMLStreamReader(new FileInputStream(FILE + filename));
 			while (xmlr.hasNext())
 			{ // continua a leggere finche ha eventi a disposizione
 				switch (xmlr.getEventType())
@@ -43,7 +43,7 @@ public class Reader
 					case XMLStreamConstants.END_ELEMENT: // fine di un elemento
 						if (xmlr.getLocalName().equals("city"))
 						{
-							DataProcessing.getCities().add(new City(nome, id, new Posizione(x, y, h), new ArrayList<Integer> (links)));
+							DataProcessing.getCities().add(new City(nome, id, new Posizione(x, y, h), new ArrayList<Integer>(links)));
 							links.removeAll(links);
 						}
 						break;
@@ -54,7 +54,7 @@ public class Reader
 		}
 		catch (Exception e)
 		{
-			System.out.println("Errore in Input: " + filename);
+			System.out.println(ERRORE + filename);
 			System.out.println(e.getMessage());
 		}
 	}

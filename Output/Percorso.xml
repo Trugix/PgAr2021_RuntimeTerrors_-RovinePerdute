@@ -1,19 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <output>
 	<routes>
-	<route team="Tonathiu" cost="13.0" cities="5">
+		<route team="Tonathiu" cost="11116.0" cities="3">
 			<città id="0" nome="campo base"></città>
-			<città id="1" nome="Cusco"></città>
-			<città id="3" nome="Ollantaytambo"></città>
-			<città id="9" nome="Machu Picchu"></città>
-			<città id="12" nome="Rovine Perdute"></città>
-			</route>
+			<città id="3" nome="Mixco Vieio"></città>
+			<città id="4" nome="Rovine Perdute"></città>
+		</route>
 
-		<route team="Metztli" cost="20.0" cities="4">
+		<route team="Metztli" cost="1791.0" cities="3">
 			<città id="0" nome="campo base"></città>
-			<città id="6" nome="Tenochtitlan"></città>
-			<città id="10" nome="Quirigua"></città>
-			<città id="12" nome="Rovine Perdute"></città>
-			</route>
+			<città id="3" nome="Mixco Vieio"></città>
+			<città id="4" nome="Rovine Perdute"></città>
+		</route>
 	</routes>
 </output>

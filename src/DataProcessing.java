@@ -43,7 +43,10 @@ public class DataProcessing
 		}
 	}
 	
-	public static void calcolaTeamMet()
+	/**
+	 * calcola il percorso ottimale per i team
+	 */
+	public static void calcolaPercorso(boolean met)
 	{
 		double distanza;
 		cities.get(0).setDistMin(0);
@@ -52,14 +55,17 @@ public class DataProcessing
 		{
 			for (City c : p.getVicini())
 			{
-				distanza = p.getPosizione().calcDistH(c.getPosizione()) + p.getDistMin();
-				if (distanza < c.getDistMin())
+				if (met)
+					distanza = p.getPosizione().calcDistH(c.getPosizione()) + p.getDistMin(); //nuova distanza dall'origine
+				else
+					distanza = p.getPosizione().calcDistXY(c.getPosizione()) + p.getDistMin();
+				if (distanza < c.getDistMin())  //se risulata che la nuova distanza è minore aggiorna distMin e prevCity e aggiorna il numero di città per arrivarci
 				{
 					c.setDistMin(distanza);
 					c.setPrevCity(p);
 					c.setNumeroCity(c.getPrevCity().getNumeroCity() + 1);
 				}
-				else if (distanza == c.getDistMin() && p.getNumeroCity() < c.getNumeroCity())
+				else if (distanza == c.getDistMin() && p.getNumeroCity() < c.getNumeroCity())   //nel caso la distanza sia la stessa controlla che il percorso passi il minor numero di città
 				{
 					c.setDistMin(distanza);
 					c.setPrevCity(p);
@@ -67,7 +73,10 @@ public class DataProcessing
 				}
 			}
 		}
-		salvaPercorsoMet();
+		if (met)
+			salvaPercorsoMet();
+		else
+			salvaPercorsoTon();
 	}
 	
 	public static void calcolaTeamTon()
