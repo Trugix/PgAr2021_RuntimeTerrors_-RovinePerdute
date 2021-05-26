@@ -68,11 +68,21 @@ public class DataProcessing
 					c.setPrevCity(p);
 					c.setNumeroCity(c.getPrevCity().getNumeroCity() + 1);
 				}
-				else if (distanza == c.getDistMin() && p.getNumeroCity() < c.getNumeroCity())   //nel caso la distanza sia la stessa controlla che il percorso passi il minor numero di città
+				else if (distanza <= c.getDistMin() && p.getNumeroCity()+1 < c.getNumeroCity())   //nel caso la distanza sia la stessa controlla che il percorso passi il minor numero di città
 				{
 					c.setDistMin(distanza);
 					c.setPrevCity(p);
 					c.setNumeroCity(p.getPrevCity().getNumeroCity() + 1);
+				}
+				else if (distanza <= c.getDistMin() && p.getNumeroCity()+1 <= c.getNumeroCity() && p.getId() > c.getPrevCity().getId() && p.getPrevCity().getId() != c.getPrevCity().getId()) //nel caso in cui la distanza ed il numero di città siano uguali
+				{                                                                                                                                                                             //si sceglie il percorso che passa per l'id più alto
+					/*if (p.getId()==3119)  per debug, è esattamente questo id che da problemi, non sembra ci siano altre occorenze nei file
+					{                       è per questo che c'è l'ultima condizione
+						System.out.println("");
+					}*/
+					c.setDistMin(distanza);
+					c.setPrevCity(p);
+					c.setNumeroCity(c.getPrevCity().getNumeroCity() + 1);
 				}
 			}
 		}
