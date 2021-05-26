@@ -1,11 +1,11 @@
 import it.unibs.fp.mylib.*;
 
-import javax.xml.crypto.Data;
 
 public class Main
 {
 	private static final String BENVENUTO = "\n\nBenvenuto, programma dei Runtime Terrors\n";
-	private static final String[] SCELTE = {"PgAr_Map_5.xml", "PgAr_Map_12.xml", "PgAr_Map_50.xml", "PgAr_Map_200.xml", "PgAr_Map_2000.xml", "PgAr_Map_10000.xml"};
+	private static final String[] SCELTE = {"PgAr_Map_5.xml", "PgAr_Map_12.xml", "PgAr_Map_50.xml", "PgAr_Map_200.xml", "PgAr_Map_2000.xml", "PgAr_Map_10000.xml", "Custom"};
+	private static final String CUSTOM = "\nInserisci il nome del file da utilizzare: ";
 	private static final String SCELTA = "Scelta file";
 	
 	public static void main(String[] args)
@@ -33,6 +33,9 @@ public class Main
 				break;
 			case 6:
 				Reader.readInput(SCELTE[5]);
+				break;
+			case 7:
+				Reader.readInput(InputDati.leggiStringaNonVuota(CUSTOM));
 				break;
 			case 0:
 				System.exit(0);

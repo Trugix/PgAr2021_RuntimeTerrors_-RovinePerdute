@@ -5,7 +5,7 @@ public class City
 	private String nome;
 	private int id;
 	private Posizione posizione;
-	private ArrayList<Integer> percorsi = new ArrayList<>(); //lista con gli id dei percorsi
+	private ArrayList<Integer> percorsi; //lista con gli id dei percorsi
 	private ArrayList<City> vicini = new ArrayList<>();    //lista con le città associate agli id di percorsi
 	private double distMin = Double.MAX_VALUE;  //distanza dall'origine
 	private City prevCity = this;               //città precendente nel percorso (inizializzata a this per evitare null pointers exeptions) (magari si poteva mettere un throw nel main? o non si fa?)
